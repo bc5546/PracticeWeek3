@@ -1,0 +1,11 @@
+player는 말 그대로 플레이어 캐릭터가 정상적으로 동작하기 위해 
+갖고 있어야 하는 요소들을 저장하는 클래스이고
+CharacterManager은 그 player클래스를 인스턴스로 받아와서
+싱글톤 형식으로 만들면서 DontdestroyOnLoad와 static등을 통해 
+참조하기 쉽고 딱 하나만 유지될 수 있게 함.
+
+Move: FixedUpdate에서 호출해 rigidbody.velocity를 변경하는 메서드.
+OnMove()에서 바뀌는 curMovementInput에 따라 dir이 바뀐다.
+dir의 y는 이전에 있던 속도 그대로를 위해 rigidbody.velocity.y로 설정.
+
+CameraLook: 
