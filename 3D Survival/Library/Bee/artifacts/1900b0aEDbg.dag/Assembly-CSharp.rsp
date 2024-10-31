@@ -374,6 +374,7 @@
 "Assets/Scripts/UI/ConditionUI.cs"
 "Assets/Scripts/UI/DamageIndicator.cs"
 "Assets/Scripts/UI/ItemSlot.cs"
+"Assets/Scripts/UI/Setting.cs"
 "Assets/Scripts/UI/UIInventory.cs"
 -langversion:9.0
 

@@ -8,4 +8,14 @@ Move: FixedUpdate에서 호출해 rigidbody.velocity를 변경하는 메서드.
 OnMove()에서 바뀌는 curMovementInput에 따라 dir이 바뀐다.
 dir의 y는 이전에 있던 속도 그대로를 위해 rigidbody.velocity.y로 설정.
 
-CameraLook: 
+CameraLook: LateUpdate에서 호출해 transform.eulerAngles과 cameraContainer.localEulerAngles를 변경하는 메서드.
+OnLook()에서 바뀌는 mouseDelta를 통해 y로는 camCurXRot를, x로는 transform.eulerAngles의 y가 바뀐다.
+서로 바뀌어서 적용되는 이유는 2d에서 3d로 넘어오면서 축이 바뀌어서 그렇다는듯.
+
+Move 는 FixedUpdate, CameraLook 은 LateUpdate에서 호출되는 이유:
+fixedUpdate는 update와 다르게 프레임 단위가 아니라 Fixed Timestep이라는
+일정한 간격으로 호출 된다는듯. 그 때문에 물리엔진 관련 요소가
+더 중확하게 이루어 질 수 있어서 그렇다고 한다.
+lateUpdate는 모든 다른 update가 호출된 뒤 마지막에 호출된다.
+카메라가 오브젝트를 따라갈 경우 그 오브젝트가 update 함수에서
+움직일 때 원활하게 따라갈 수 있다고 한다.
