@@ -18,6 +18,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     Condition stamina { get { return conditionUI.stamina; } }
 
+    Condition mana { get { return conditionUI.mana; } }
+
     public float noHungerHeathDecay;
 
     public event Action onTakeDamage;
@@ -27,6 +29,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         hunger.Subtract(hunger.passiveValue * Time.deltaTime);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
         health.Add(health.passiveValue * Time.deltaTime);
+        mana.Add(health.passiveValue * Time.deltaTime);
 
         if(hunger.curValue == 0)
         {
@@ -61,5 +64,15 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         {
             Die();
         }
+    }
+
+    public void UseSkill(float skillCost)
+    {
+        mana.Subtract(skillCost);
+    }
+
+    public void UseManaPotion(float manaAmount)
+    {
+        mana.Add(manaAmount);
     }
 }

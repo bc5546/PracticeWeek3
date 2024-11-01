@@ -1,0 +1,28 @@
+별도의 UI 스크립트를 만드는 이유에 대해 객체지향적 관점에서 생각해보세요.
+
+별도의 스크립트를 생성해 관리하는것이 요소 추가나 변경에 더 유리하기 때문에
+
+인터페이스의 특징에 대해 정리해보고 구현된 로직을 분석해보세요.
+
+특정 요소를 미리 정의해두고 그 요소를 구현한 객체를 포함하는 틀로 사용됨.
+이를 통해 여러 객체를 한 틀로 비슷하게 만든 뒤 용도에 따라 다르게 사용하거나 하는 등
+같은 요소가 있는것들을 묶어서 사용하기 쉽게 됨
+과제 코드에서는 IDamagable이라는 인터페이스를 통해 TakePhysicalDamage(int damage)
+라는 요소를 공통적으로 갖는 클래스를 생성해서 데미지 처리를 하도록 했음.
+지금은 플레이어밖에 없지만 적이나 이런것들이 생성되어도 IDamagable을 상속해서
+TakePhysicalDamage를 호출해 각자 다른 방식으로 데미지를 입더라고 쉽게 호출할 수 있음.
+
+핵심 로직을 분석해보세요. (UI 스크립트 구조, CampFire, DamageIndicator)
+
+UI 스크립트 구조: 플레이어의 상태를 나타내는 요소를 갖고있는 ConditionUI가
+각 상태를 나타내는Condition을 갖고 싱글톤인 플레이어의 conditionUI에 연결.
+Condition들은 플레이어의 PlayerCondition의 Condition에 연결되어 playerCondition
+에서 값이 변하면 연결된 Condition의 curValue가 변화함.
+
+CampFire: 충돌판정으로 things에 IDamagable 인터페이스를 상속받은 객체를 추가.
+Dealdamage를 damageRate마다 반복해서 things에 있는 객체의 TakePhysicalDamage를 호출함.
+멀어지면 things에서 없앰.
+
+DamageIndicator: 싱글톤 플레이어의 onTakeDamage 액션에 flash를 추가해 
+데미지를 입을때마다 flash를 실행. 이미지를 킨 뒤 천천히 옅어지는 효과를 코루틴으로 실행
+만약 flash가 호출됐을 때 빛이 안꺼졌다면 코루틴을 정지시키고 재실행
