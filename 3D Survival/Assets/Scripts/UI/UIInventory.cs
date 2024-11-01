@@ -158,7 +158,7 @@ public class UIInventory : MonoBehaviour
 
     void ThrowItem(ItemData data)
     {
-        GameObject temp=Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
+        GameObject temp=Instantiate(Resources.Load<GameObject>(data.prefabPosition), dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
         temp.GetComponent<ItemObject>().itemData = data;
     }
 

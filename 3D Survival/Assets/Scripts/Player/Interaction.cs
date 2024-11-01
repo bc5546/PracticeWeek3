@@ -21,6 +21,7 @@ public class Interaction : MonoBehaviour
     void Start()
     {
         camera = Camera.main;
+        promptText = CharacterManager.Instance.player.UI.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

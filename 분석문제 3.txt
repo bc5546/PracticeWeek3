@@ -1,0 +1,25 @@
+interaction: update에서 checkRate마다 ray를 쏴서 만약 충돌하는 물체가 layerMask에
+포함되면 이전에 확인중이던 오브젝트와 충돌한 오브젝트를 비교해 만약 다르면
+Iinteractable을 가져와서 SetPromptText() 실행. ray를 쏴서 충돌하는 layerMask에
+포함된 물체가 없다면 curInteractedGameObject,promptText,curInteractable 초기화
+SetPromptText()는 curInteracable에서 텍스트를 가져와 promptText의 텍스트에
+세팅 해주는 메서드. OnInteractInput()은 해당하는 키를 입력받으면 실행되어
+curInteractable의 OnInteract()를 실행하고 curInteractedGameObject,promptText,curInteractable 초기화
+
+
+inventory: start에서 필요한거 연결시키고 action들에 메서드 추가하고 초기화 후 종료
+ClearSelectedItemWindow()는 인벤토리 화면에서 선택된 아이템에 따라 바뀌는 부분
+초기화 하는 메서드. Toggle()은 playerController에 들어가서 키 입력 받았을때 ui를 끄고 키는 메서드
+isOpen()은 인벤토리 UI가 켜져있는지 확인하는 메서드. AddItem은 player.addItem에 추가되어
+아이템을 획득하면 해당 아이템을 slot에 적용시키는 메서드. itemData가 canStack인지,
+이전에 해당하는 아이템이 있었는지, 빈 슬롯이 있는지 등에 따라 결과가 바뀜.
+UIUpdate는 슬롯들을 그에 포함된 아이템데이터에 따라 보여주는 메서드.
+GetItemStack()은 해당 아이템을 포함하는 slot이 있으면 받아오는 메서드.
+GetEmptySlot()은 빈 슬롯을 받아오는 메서드.
+ThrowItem()은 아이템을 슬롯에서 제거하고 instantiate해서 월드에 재생성하는 메서드
+SelectItem()은 인벤토리에서 아이템이 선택되면 해당 아이템의 여러 요소에 따라 
+버튼, 텍스트 등을 갱신하는 메서드.
+OnUse(),OnDrop()은 각각 아이템사용, 버리기에 해당하는 메서드.
+RemoveSelectedItem()은 현재 선택된 슬롯의 아이템갯수를 1 감소시킨뒤
+그 갯수에 따라 슬롯을 초기화하거나 하는 메서드
+
