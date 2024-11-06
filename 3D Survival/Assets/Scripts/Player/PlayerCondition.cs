@@ -75,4 +75,26 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     {
         mana.Add(manaAmount);
     }
+
+    public bool UseStamina(float amount)
+    {
+        if(stamina.curValue - amount < 0f)
+        {
+            return false;
+        }
+
+        stamina.Subtract(amount);
+        return true;
+    }
+
+    public bool UseHealth(float amount)
+    {
+        if (health.curValue - amount < 0f)
+        {
+            return false;
+        }
+
+        health.Subtract(amount);
+        return true;
+    }
 }
